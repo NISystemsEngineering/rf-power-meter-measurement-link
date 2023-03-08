@@ -1,0 +1,11 @@
+{
+  "services": [
+    {
+      "displayName": "RF Power Meter",
+      "serviceClass": "RFPowerMeter_python",
+      "descriptionUrl": "https://github.com/NISystemsEngineering/rf-power-meter-measurement-link",
+      "providedInterfaces": [ "ni.measurementlink.measurement.v1.MeasurementService" ],
+      "path": "start.bat"
+    }
+  ]
+}
