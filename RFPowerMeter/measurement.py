@@ -14,7 +14,7 @@ import ni_measurementlink_service as nims
 service_directory = pathlib.Path(__file__).resolve().parent
 measurement_service = nims.MeasurementService(
     service_config_path=service_directory / "RFPowerMeter.serviceconfig",
-    version="1.0.0.0",
+    version="1.0.1.0",
     ui_file_paths=[service_directory / "RFPowerMeter.measui"],
 )
 
@@ -42,8 +42,7 @@ def measure(resource_name,frequency,aperture_time,auto_averaging,averaging_count
         nrpz.visa_timeout = 3000  # Timeout for VISA Read Operations
         nrpz.instrument_status_checking = True  # Error check after each command
     except ResourceError as ex:
-        print('Error initializing the instrument session:\n' + ex.args[0])
-        exit()
+        measurement_service.context.abort(-1,'Error initializing the instrument session:\n' + ex.args[0])
 
     print(f'Visa manufacturer: {nrpz.visa_manufacturer}')
     print(f'Instrument Identification string: {nrpz.idn_string}')
